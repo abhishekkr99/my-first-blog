@@ -14,9 +14,15 @@ Including another URLconf
     2. Import the include() function: from django.conf.urls import url, include
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
-from django.conf.urls import url
+from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^admin/', admin.site.urls), 
+    #if django finds url starting with admin it will send it in corresponding view
+    
+    url(r'', include('blog.urls')), 
+    # else it will send all them to blog.urls & look for further instruction there
+    # r - hint for Python that the string may contain special characters that are not 
+    #		meant for Python itself, but for the regular expression instead
 ]
